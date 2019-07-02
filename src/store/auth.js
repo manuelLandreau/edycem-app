@@ -60,21 +60,6 @@ const auth = {
           return Promise.reject(e)
         })
     },
-    register({ commit }, payload) {
-      commit('setLoading', true)
-      return axios
-        .post('/user/register', JSON.stringify(payload))
-        .then(() => {
-          commit('setLoading', false)
-          commit('setError', null)
-          return Promise.resolve()
-        })
-        .catch(e => {
-          commit('setLoading', false)
-          commit('setError', e.message)
-          return Promise.reject(e)
-        })
-    },
     logout({ commit }) {
       commit('setAuth', false)
       axios.defaults.headers.common.Authorization = null

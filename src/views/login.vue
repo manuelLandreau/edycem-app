@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <main-title class="mt-3">Login</main-title>
     <b-form class="mt-3" @submit.prevent="submit">
       <div class="row justify-content-center">
