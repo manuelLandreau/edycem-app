@@ -20,7 +20,7 @@ Vue.use(BootstrapVue)
 Vue.use(VueAxios, axios)
 Vue.axios.defaults.baseURL =
   process && process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080'
+    ? 'http://localhost:8000'
     : 'https://prod.net'
 
 Vue.config.productionTip = false
