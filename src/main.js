@@ -7,6 +7,7 @@ import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import store from './store'
 import router from './router'
+import './registerServiceWorker'
 
 // https://vuex.vuejs.org/
 Vue.use(Vuex)
