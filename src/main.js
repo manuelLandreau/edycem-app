@@ -22,7 +22,7 @@ Vue.use(VueAxios, axios)
 Vue.axios.defaults.baseURL =
   process && process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'
-    : 'https://prod.net'
+    : 'https://rugged-shenandoah-91940.herokuapp.com'
 
 Vue.config.productionTip = false
 
