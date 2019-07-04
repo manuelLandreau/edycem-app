@@ -1,4 +1,5 @@
-# edycem-app
+# Edycem APP
+PWA made with vuejs, vuex, bootstrap...
 
 ## Project setup
 ```
