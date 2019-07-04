@@ -1,8 +1,9 @@
+<!--suppress CheckEmptyScriptTag, HtmlUnknownTag -->
 <template>
   <div class="container">
     <main-title class="mt-3">Login</main-title>
     <b-form class="mt-3" @submit.prevent="submit">
-      <div class="row justify-content-center">
+      <div class="row">
         <div class="col-xs-12 col-md-5">
           <b-input
             v-model="email"

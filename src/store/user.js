@@ -5,23 +5,23 @@ const user = {
   state: () => ({
     id: null,
     email: null,
-    firstname: null,
-    lastname: null,
-    gender: null
+    codeMetier: null,
+    cir: true,
+    gdprValidation: true
   }),
   getters: {
     id: state => state.id,
     email: state => state.email,
-    firstname: state => state.firstname,
-    lastname: state => state.lastname,
-    gender: state => state.gender
+    codeMetier: state => state.codeMetier,
+    cir: state => state.cir,
+    gdprValidation: state => state.gdprValidation
   },
   mutations: {
     setId: (state, payload) => (state.id = payload),
     setEmail: (state, payload) => (state.email = payload),
-    setFirstname: (state, payload) => (state.firstname = payload),
-    setLastname: (state, payload) => (state.lastname = payload),
-    setGender: (state, payload) => (state.gender = payload)
+    setCodeMetier: (state, payload) => (state.codeMetier = payload),
+    setCir: (state, payload) => (state.cir = payload),
+    setGdprValidation: (state, payload) => (state.gdprValidation = payload)
   },
   actions: {
     fetchUserData({ commit }) {
@@ -30,9 +30,9 @@ const user = {
         .then(({ data }) => {
           commit('setId', data.id)
           commit('setEmail', data.email)
-          commit('setFirstname', data.firstname)
-          commit('setLastname', data.lastname)
-          commit('setGender', data.gender)
+          commit('setCodeMetier', data.codeMetier)
+          commit('setCir', data.cir)
+          commit('setGdprValidation', data.gdprValidation)
           return Promise.resolve()
         })
         .catch(e => Promise.reject(e))
