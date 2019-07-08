@@ -60,6 +60,9 @@ const auth = {
           return Promise.reject(e)
         })
     },
+    init(vuex, payload) {
+      return axios.post('/password_init', payload)
+    },
     logout({ commit }) {
       commit('setAuth', false)
       axios.defaults.headers.common.Authorization = null
