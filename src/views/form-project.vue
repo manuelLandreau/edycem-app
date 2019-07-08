@@ -1,99 +1,71 @@
 <!-- formulaire pour la soumission de proposition d'un projet -->
 <template>
   <div class="container">
-    <div class="card">
-      <h1 class="card-header">Proposition d'un nouveau projet</h1>
-      <div class="card-body">
-        <b-form class="mt-3" @submit.prevent="submit">
-          <div class="row">
-            <div class="col">
-              <label for="society">Société :</label>
-              <b-form-input id="society" v-model="society" placeholder="Société"/>
-            </div>
-            <div class="col">
-              <label for="name-applicant">Nom du demandeur :</label>
-              <b-form-input id="name-applicant" v-model="name_applicant" placeholder="Demandeur"/>
-            </div>
-          </div>
+    <main-title class="mt-3">Proposition d'un nouveau projet</main-title>
+    <b-form class="mt-3" @submit.prevent="submit">
+      <div class="row">
+        <div class="col-md-5 col-xs-12">
+          <label for="society">Nom de la société :</label>
+          <b-form-input id="society" v-model="society" placeholder="Société"/>
+      
+          <label for="name-applicant">Nom du demandeur :</label>
+          <b-form-input id="name-applicant" v-model="name_applicant" placeholder="Demandeur"/>
 
-          <div class="row mt-3">
-            <div class="col">
-              <label for="project">Site concerné ou projet :</label>
-              <b-form-input id="project" v-model="project" placeholder="Sites concernés / projet"/>
-            </div>
-            <div class="col">
-              <label for="name-project">Projet :</label>
-              <b-form-input id="name-project" v-model="name_project" placeholder="Nom du projet"/>
-            </div>
-          </div>
+          <label for="project">Site concerné ou projet :</label>
+          <b-form-input id="project" v-model="project" placeholder="Sites concernés / projet"/>
 
-          <div class="row mt-3">
-            <div class="col">
-              <label for="dir">Eligible CIR :</label>
-              <b-form-select id="cir" v-model="selectedCir" :options="selectCirOpt">
-                <option :value="null" disabled>Eligible CIR</option>
-              </b-form-select>
-            </div>
-            <div class="col">
-              <label for="low-type-activity">Sous-type d'activité :</label>
-              <b-form-input id="low-type-activity" v-model="low_type_activity" placeholder="Sous type d'activité"/>
-            </div>
-          </div>
+          <label for="name-project">Nom du projet :</label>
+          <b-form-input id="name-project" v-model="name_project" placeholder="Projet"/>
 
-          <div class="row mt-3">
-            <div class="col">
-              <label for="priority">Priorité :</label>
-              <b-form-input id="priority" v-model="priority" placeholder="Priorité"/>
-            </div>
-            <div class="col">
-              <label for="document">Document à prévoir :</label>
-              <b-form-select
-              id="document"
-              v-model="selectedDoc"
-              :options="selectDocOpt"
-              >
-              <option :value="null" disabled>Document à prévoir</option>
-              </b-form-select>
-            </div>
-          </div>
-
-          <div class="row mt-3">
-            <div class="col">
-              <label for="echeance">Echéance previsionnelle du projet :</label>
-              <date-picker v-model="date" :config="optionsDate"></date-picker>
-            </div>
-            <div class="col">
-              <b-form-checkbox
-              id="chair"
-              class="mt-5"
-              v-model="status"
-              name="Dans le cadre de la Chair"
-              value="Oui"
-              unchecked-value="Non"
-              switch
-              >
-              <label for="echeance">Dans le cadre de la Chair</label>
+          <label for="dir">Eligible CIR :</label>
+          <b-form-select id="cir" v-model="selectedCir" :options="selectCirOpt">
+            <option :value="null" disabled>CIR</option>
+          </b-form-select>
+      
+          <label for="low-type-activity">Sous-type d'activité :</label>
+          <b-form-input id="low-type-activity" v-model="low_type_activity" placeholder="Sous-type"/>
+        
+          <label for="priority">Priorité :</label>
+          <b-form-input id="priority" v-model="priority" placeholder="Priorité"/>
+      
+          <label for="document">Document à prévoir :</label>
+          <b-form-select
+            id="document"
+            v-model="selectedDoc"
+            :options="selectDocOpt"
+          ><option :value="null" disabled>Document</option>
+          </b-form-select>
+    
+          <label for="echeance">Echéance previsionnelle du projet :</label>
+          <date-picker v-model="date" :config="optionsDate"></date-picker>
+      
+          <b-form-checkbox
+            id="chair"
+            v-model="status"
+            name="Dans le cadre de la Chair"
+            value="Oui"
+            unchecked-value="Non"
+            switch
+          ><label for="echeance">Dans le cadre de la Chair</label>
           </b-form-checkbox>
-            </div>
-          </div>
-          
+        
           <label for="objectif" class="mt-3">Objectif du projet :</label>
           <b-form-textarea
             id="objectif"
             v-model="objectif"
-            placeholder="Objectif du projet"
+            placeholder="Objectif"
             rows="3"
             max-rows="6"
           ></b-form-textarea>
 
-          <div class="text-right mt-3">
-            <b-button class="btn btn-success" type="submit">
-              Soumettre
-            </b-button>
-          </div>
-        </b-form>
+            <div class="text-right mt-3">
+              <b-button class="btn btn-success" type="submit">
+                Soumettre
+              </b-button>
+            </div>
+        </div>
       </div>
-    </div>
+    </b-form>
   </div>
 </template>
 
@@ -136,7 +108,8 @@ export default {
   }),
   methods: {
     submit() {
-      return true;
+      // TODO
+      return true
     }
   }
 }
