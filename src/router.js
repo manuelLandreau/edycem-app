@@ -24,6 +24,11 @@ const router = new Router({
       meta: {
         auth: true
       }
+    },
+    {
+      path: '/projet',
+      name: 'projet',
+      component: () => import('./views/form-project.vue')
     }
   ]
 })

@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <h1>Edycem</h1>
+    <!-- <h1>Edycem</h1> -->
+    <img src="img/logo-edycem.jpg" style="width: 20%;height: 30%;" class="mb-3" alt="edycem">
     <div v-if="isAuth" class="logout" @click="logoutAndRedirect">
-      Logout
+      <div class="btn btn-danger mt-3">
+        Logout
+      </div>
     </div>
     <router-view></router-view>
     <Footer />

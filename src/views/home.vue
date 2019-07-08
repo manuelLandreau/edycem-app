@@ -9,6 +9,9 @@
       <router-link v-else to="/formulaire">
         <b-button variant="outline-primary">Saisir vos temps</b-button>
       </router-link>
+      <router-link to="/projet">
+        <b-button variant="outline-primairy">Proposition d'un projet</b-button>
+      </router-link>
     </div>
   </div>
 </template>
