@@ -7,6 +7,8 @@
       </div>
     </div>
     <router-view></router-view>
+    <notifications group="success" position="top center"/>
+    <notifications group="error" position="top center"/>
     <Footer />
   </div>
 </template>

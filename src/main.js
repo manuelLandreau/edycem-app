@@ -8,6 +8,9 @@ import VueRouter from 'vue-router'
 import store from './store'
 import router from './router'
 import './registerServiceWorker'
+import Notifications from 'vue-notification'
+
+Vue.use(Notifications)
 
 // https://vuex.vuejs.org/
 Vue.use(Vuex)

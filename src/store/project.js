@@ -17,6 +17,13 @@ const project = {
         .get(`/projects`)
         .then(({ data }) => commit('setProjects', data))
         .catch(e => Promise.reject(e))
+    },
+    // soumission d'un projet
+    newProject(context, payload) {
+      console.log(payload)
+      return axios.post('http://monrul.com', {
+        society: payload.society
+      })
     }
   }
 }

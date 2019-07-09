@@ -60,7 +60,7 @@
           ></b-form-textarea>
 
             <div class="text-right mt-3">
-              <b-button class="btn btn-success" type="submit">
+              <b-button class="btn btn-success" @click="submit">
                 Soumettre
               </b-button>
             </div>
@@ -84,7 +84,6 @@ export default {
     name_applicant: '',
     project: '',
     name_project: '',
-    low_type_activity: '',
     selectedCir: null,
     selectCirOpt: [
       { text: '2017', value :'2017', disabled: false },
@@ -92,25 +91,53 @@ export default {
       { text: '2019', value :'2019', disabled: false },
       { text: '2020', value :'2020', disabled: false }
     ],
+    low_type_activity: '',
     priority: '',
-    status: null,
-    date: new Date(),
-    optionsDate: {
-      format: 'DD/MM/YYYY',
-      useCurrent: false,
-    },  
-    objectif: '',
     selectedDoc: null,
     selectDocOpt: [
       { text: 'Contrat de confidentialité', value :'contrat', disabled: false },
       { text: 'Licence', value :'licence', disabled: false },
       { text: 'Brevet', value :'brevet', disabled: false }
-    ]
+    ],
+    date: new Date(),
+    optionsDate: {
+      format: 'DD/MM/YYYY',
+      useCurrent: false,
+    },
+    status: null,
+    objectif: '',
   }),
   methods: {
     submit() {
-      // TODO
-      return true
+      this.$store.dispatch('project/newProject', {
+        society: this.society,
+        name_applicant: this.name_applicant,
+        project: this.project,
+        name_project: this.name_project,
+        selectCirOpt: this.selectCirOpt,
+        low_type_activity: this.low_type_activity,
+        priority: this.priority,
+        selectDocOpt: this.selectedDocOpt,
+        date: this.date,
+        status: this.status,
+        objectif: this.objectif
+      })
+      .then(response => {
+        console.log(response)
+        this.$notify({
+          group: 'success',
+          title: 'Succes',
+          text: 'Votre projet à bien été soumis'
+        });
+      })
+      .catch(error => {
+        console.log(error)
+        this.$notify({
+          group: 'error',
+          title: 'Erreur',
+          text: 'Une erreur est survenue'
+        });
+      })
     }
   }
 }
