@@ -8,35 +8,35 @@
           <label for="society">Nom de la société :</label>
           <b-form-input id="society" v-model="society" placeholder="Société"/>
       
-          <label for="name-applicant">Nom du demandeur :</label>
+          <label for="name-applicant" class="mt-2">Nom du demandeur :</label>
           <b-form-input id="name-applicant" v-model="name_applicant" placeholder="Demandeur"/>
 
-          <label for="project">Site concerné ou projet :</label>
+          <label for="project" class="mt-2">Site concerné ou projet :</label>
           <b-form-input id="project" v-model="project" placeholder="Sites concernés / projet"/>
 
-          <label for="name-project">Nom du projet :</label>
+          <label for="name-project" class="mt-2">Nom du projet :</label>
           <b-form-input id="name-project" v-model="name_project" placeholder="Projet"/>
 
-          <label for="dir">Eligible CIR :</label>
+          <label for="dir" class="mt-2">Eligible CIR :</label>
           <b-form-select id="cir" v-model="selectedCir" :options="selectCirOpt">
             <option :value="null" disabled>CIR</option>
           </b-form-select>
       
-          <label for="low-type-activity">Sous-type d'activité :</label>
+          <label for="low-type-activity" class="mt-2">Sous-type d'activité :</label>
           <b-form-input id="low-type-activity" v-model="low_type_activity" placeholder="Sous-type"/>
         
-          <label for="priority">Priorité :</label>
+          <label for="priority" class="mt-2">Priorité :</label>
           <b-form-input id="priority" v-model="priority" placeholder="Priorité"/>
       
-          <label for="document">Document à prévoir :</label>
-          <b-form-select
-            id="document"
-            v-model="selectedDoc"
-            :options="selectDocOpt"
-          ><option :value="null" disabled>Document</option>
-          </b-form-select>
+          <b-form-group for="document" label="Document à prévoir :" class="mt-2">
+            <b-form-checkbox-group
+              v-model="selectedDoc"
+              :options="selectDocOpt"
+              name="document"
+            ></b-form-checkbox-group>
+          </b-form-group>
     
-          <label for="echeance">Echéance previsionnelle du projet :</label>
+          <label for="echeance" class="mt-2">Echéance previsionnelle du projet :</label>
           <date-picker v-model="date" :config="optionsDate"></date-picker>
       
           <b-form-checkbox
@@ -46,10 +46,11 @@
             value="Oui"
             unchecked-value="Non"
             switch
+            class="mt-2"
           ><label for="echeance">Dans le cadre de la Chair</label>
           </b-form-checkbox>
         
-          <label for="objectif" class="mt-3">Objectif du projet :</label>
+          <label for="objectif" class="mt-2">Objectif du projet :</label>
           <b-form-textarea
             id="objectif"
             v-model="objectif"
