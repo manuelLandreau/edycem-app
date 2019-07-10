@@ -7,21 +7,21 @@ const user = {
     email: null,
     codeMetier: null,
     cir: true,
-    gdprValidation: true
+    gdpr: true
   }),
   getters: {
     id: state => state.id,
     email: state => state.email,
     codeMetier: state => state.codeMetier,
     cir: state => state.cir,
-    gdprValidation: state => state.gdprValidation
+    gdpr: state => state.gdpr
   },
   mutations: {
     setId: (state, payload) => (state.id = payload),
     setEmail: (state, payload) => (state.email = payload),
     setCodeMetier: (state, payload) => (state.codeMetier = payload),
     setCir: (state, payload) => (state.cir = payload),
-    setGdprValidation: (state, payload) => (state.gdprValidation = payload)
+    setGdpr: (state, payload) => (state.gdpr = payload)
   },
   actions: {
     fetchUserData({ commit }) {
@@ -32,7 +32,7 @@ const user = {
           commit('setEmail', data.email)
           commit('setCodeMetier', data.codeMetier)
           commit('setCir', data.cir)
-          commit('setGdprValidation', data.gdprValidation)
+          commit('setGdpr', data.gdpr)
           return Promise.resolve()
         })
         .catch(e => Promise.reject(e))

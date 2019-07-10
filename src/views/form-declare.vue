@@ -25,8 +25,10 @@
             v-model="selectedtask"
             :options="taskOptions"
           />
-          <label class="mt-3" for="time">Temps passé :</label>
-          <b-input id="time" v-model="time" type="number" step="5" />
+          <label class="mt-3" for="duration">Temps passé :</label>
+          <b-input id="duration" v-model="duration" type="number" step="5" />
+          <h4>Ajouter un collaborateur</h4>
+          <b-input id="add" type="text" />
           <div class="clearfix mt-2">
             <b-button class="float-right" variant="primary" type="submit">
               <b-spinner v-if="loading" small></b-spinner>
@@ -66,10 +68,13 @@ export default {
       { value: 'Gestion laboratoire', text: 'Gestion laboratoire' },
       { value: 'Développement Produit', text: 'Développement Produit' }
     ],
-    time: 60 // todo
+    duration: 60 // todo
   }),
   computed: {
-    ...mapGetters({ projectOptions: 'form/allProjects' }),
+    ...mapGetters({
+      projectOptions: 'form/allProjects',
+      userId: 'user/id'
+    }),
     taskOptions() {
       switch (this.selectedActivity) {
         case 'Sourcing Produit':
@@ -114,11 +119,27 @@ export default {
     })
   },
   methods: {
-    ...mapActions({ fetchProjects: 'form/fetchProjects' }),
+    ...mapActions({
+      fetchProjects: 'form/fetchProjects',
+      submitDeclareForm: 'form/submitDeclareForm'
+    }),
     // eslint-disable-next-line vue/return-in-computed-property
     submit() {
-      // todo
-      return true
+      this.loading = true
+      this.submitDeclareForm({
+        project: `/projects/${this.selectedProject}`,
+        activity: this.selectedActivity,
+        task: this.selectedtask,
+        duration: this.duration,
+        user: `/users/${this.userId}`
+      }).then(() => {
+        this.$notify({
+          group: 'success',
+          text: 'Le formulaire à bien été soumis avec succès !'
+        })
+        this.loading = false
+        this.$router.push('/')
+      })
     }
   }
 }

@@ -18,15 +18,17 @@ const auth = {
     setError: (state, payload) => (state.error = payload)
   },
   actions: {
-    initAuth({ commit }) {
+    initAuth({ commit, dispatch }) {
       if (localStorage.getItem('token')) {
         commit('setAuth', true)
         const token = localStorage.getItem('token')
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
+        return dispatch('user/fetchUserData', null, { root: true })
       } else if (sessionStorage.getItem('token')) {
         commit('setAuth', true)
         const token = sessionStorage.getItem('token')
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
+        return dispatch('user/fetchUserData', null, { root: true })
       }
     },
     login({ commit, dispatch }, payload) {
@@ -62,6 +64,9 @@ const auth = {
     },
     init(vuex, payload) {
       return axios.post('/password_init', payload)
+    },
+    submitGDPR(vuex, payload) {
+      return axios.put(`/users/${payload}`, { gdpr: true })
     },
     logout({ commit }) {
       commit('setAuth', false)

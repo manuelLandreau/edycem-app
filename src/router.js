@@ -18,6 +18,11 @@ const router = new Router({
       component: () => import('./views/login.vue')
     },
     {
+      path: '/gdpr',
+      name: 'gdpr',
+      component: () => import('./views/gdpr-validation.vue')
+    },
+    {
       path: '/formulaire',
       name: 'formulaire',
       component: () => import('./views/form-declare.vue'),
@@ -37,20 +42,30 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
     const isAuth = store.getters['auth/isAuth']
     if (!isAuth) {
-      // next({
-      //   path: '/login',
-      //   query: { redirect: to.fullPath }
-      // })
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
     } else {
-      const gdpr = store.getters['user/gdprValidation']
+      const gdpr = store.getters['user/gdpr']
       const cir = store.getters['user/cir']
-      if (to.name === 'formulaire') {
-        gdpr && cir
-          ? next()
-          : next({
-              path: '/home',
-              query: { redirect: to.fullPath }
-            })
+        console.log(gdpr);
+        if (!gdpr) {
+        next({
+          path: '/gdpr',
+          query: { redirect: to.fullPath }
+        })
+      }
+
+      if (to.name === 'formulaire' || to.name === 'projet') {
+        if (cir) {
+          next()
+        } else {
+          next({
+            path: '/home',
+            query: { redirect: to.fullPath }
+          })
+        }
       }
       next()
     }
