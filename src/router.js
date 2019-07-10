@@ -41,34 +41,35 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
     const isAuth = store.getters['auth/isAuth']
-    if (!isAuth) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    } else {
-      const gdpr = store.getters['user/gdpr']
-      const cir = store.getters['user/cir']
-        console.log(gdpr);
-        if (!gdpr) {
+    setTimeout(() => {
+      if (!isAuth) {
         next({
-          path: '/gdpr',
+          path: '/login',
           query: { redirect: to.fullPath }
         })
-      }
-
-      if (to.name === 'formulaire' || to.name === 'projet') {
-        if (cir) {
-          next()
-        } else {
+      } else {
+        const gdpr = store.getters['user/gdpr']
+        const cir = store.getters['user/cir']
+        if (!gdpr) {
           next({
-            path: '/home',
+            path: '/gdpr',
             query: { redirect: to.fullPath }
           })
         }
+
+        if (to.name === 'formulaire' || to.name === 'projet') {
+          if (cir) {
+            next()
+          } else {
+            next({
+              path: '/home',
+              query: { redirect: to.fullPath }
+            })
+          }
+        }
+        next()
       }
-      next()
-    }
+    }, 300)
   } else {
     next()
   }
