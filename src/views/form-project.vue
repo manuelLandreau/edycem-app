@@ -109,7 +109,7 @@ export default {
   }),
   methods: {
     submit() {
-      this.$store.dispatch('project/newProject', {
+      this.$store.dispatch('form/submitProjectForm', {
         society: this.society,
         name_applicant: this.name_applicant,
         project: this.project,

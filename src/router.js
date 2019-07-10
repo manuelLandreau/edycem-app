@@ -20,7 +20,7 @@ const router = new Router({
     {
       path: '/formulaire',
       name: 'formulaire',
-      component: () => import('./views/formulaire.vue'),
+      component: () => import('./views/form-declare.vue'),
       meta: {
         auth: true
       }
@@ -36,12 +36,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
     const isAuth = store.getters['auth/isAuth']
-    console.log(isAuth)
     if (!isAuth) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
+      // next({
+      //   path: '/login',
+      //   query: { redirect: to.fullPath }
+      // })
     } else {
       const gdpr = store.getters['user/gdprValidation']
       const cir = store.getters['user/cir']

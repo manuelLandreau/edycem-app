@@ -2,7 +2,7 @@
 <template>
   <div class="container">
     <main-title class="mt-3">Formulaire de saisie</main-title>
-    <b-form class="mt-3" @submit.prevent="submit">
+    <b-form v-if="!loading" class="mt-3" @submit.prevent="submit">
       <div class="row">
         <div class="col-md-6">
           <label class="mt-3" for="project">Projet :</label>
@@ -39,11 +39,14 @@
         </div>
       </div>
     </b-form>
+    <div v-else class="text-center">
+      <b-spinner v-if="loading" big></b-spinner>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import MainTitle from '../components/MainTitle'
 
 export default {
@@ -51,6 +54,8 @@ export default {
     MainTitle
   },
   data: () => ({
+    loading: false,
+    error: '',
     selectedProject: null,
     selectedActivity: null,
     selectedtask: null,
@@ -64,7 +69,7 @@ export default {
     time: 60 // todo
   }),
   computed: {
-    ...mapGetters({ projectOptions: 'project/allProjects' }),
+    ...mapGetters({ projectOptions: 'form/allProjects' }),
     taskOptions() {
       switch (this.selectedActivity) {
         case 'Sourcing Produit':
@@ -102,7 +107,14 @@ export default {
       }
     }
   },
+  created() {
+    this.loading = true
+    this.fetchProjects().then(() => {
+      this.loading = false
+    })
+  },
   methods: {
+    ...mapActions({ fetchProjects: 'form/fetchProjects' }),
     // eslint-disable-next-line vue/return-in-computed-property
     submit() {
       // todo
