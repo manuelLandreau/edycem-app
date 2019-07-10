@@ -37,7 +37,9 @@ export default {
     ...mapGetters({ isAuth: 'auth/isAuth' })
   },
   created() {
-    this.initAuth().then(() => (this.loading = false))
+    this.initAuth()
+      .then(() => (this.loading = false))
+      .catch(() => (this.loading = false))
   },
   methods: {
     ...mapActions({
