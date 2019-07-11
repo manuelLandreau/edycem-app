@@ -27,8 +27,8 @@
           />
           <label class="mt-3" for="duration">Temps passé :</label>
           <b-input id="duration" v-model="duration" type="number" step="5" />
-          <h4>Ajouter un collaborateur</h4>
-          <b-input id="add" type="text" />
+          <h4 class="mt-4">Ajouter un collaborateur</h4>
+          <b-input id="add" type="text" style="width: 40%" /><b-input type="number" style="width: 40%" /><b-button variant="secondary" style="width: 20%">Ajouter</b-button>
           <div class="clearfix mt-2">
             <b-button class="float-right" variant="primary" type="submit">
               <b-spinner v-if="loading" small></b-spinner>
